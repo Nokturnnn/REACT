@@ -31,9 +31,10 @@ const Register = () => {
         body: JSON.stringify({ email, password, name: displayName }),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        const data = await response.json();
-        alert("Inscription réussie !");
+        localStorage.setItem("authToken", data.token);
         router.push("../../homepages/homepage");
       } else {
         const data = await response.json();

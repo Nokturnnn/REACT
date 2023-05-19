@@ -11,10 +11,12 @@ const HomePage = ({ places }) => {
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    const getLocalTheme = () => {
       const localTheme = localStorage.getItem("theme");
-      localTheme && setTheme(localTheme);
-    }
+      return localTheme ? localTheme : "default";
+    };
+
+    setTheme(getLocalTheme());
     setMounted(true);
   }, []);
 
